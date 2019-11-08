@@ -75,5 +75,24 @@ git push -u github master
 git push 
 ```
 
+## 克隆项目
+```shell
+git clone <url>
+
+git clone https://github.com/weblemon/web1911-04.git
+```
+## 同步远程仓库
+```shell
+git pull 
+```
+
+## 拉取分支
+```shell
+git fetch  <仓库名称> <远程分支名称> : <本地分支名称>
+
+git fetch origin dev:dev
+
+# 建议本地分支名称与远程分支名称一样
+```
 
 
