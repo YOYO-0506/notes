@@ -95,4 +95,16 @@ git fetch origin dev:dev
 # 建议本地分支名称与远程分支名称一样
 ```
 
+## GitLab
 
+生成SSH密钥
+```shell
+ssh-keygen -t rsa -C "1119663769@qq.com"
+
+# 需要设置密码
+# Enter passphrase (empty for no passphrase): 
+# 重复输入密码
+# Enter same passphrase again: 
+
+# 选择后缀名为pub的文件内容即可
+```
