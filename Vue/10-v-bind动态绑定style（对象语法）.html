@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title> 10-v-bind动态绑定style（对象语法）</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style type="text/css">
+			.colorRed {
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div">
+			<h1>{{title}}</h1>
+			<!-- <h2 v-bind:style="{key(属性名): value(属性值)}">{{title}}</h2> -->
+			<!-- '100px'必须加上引号，否则会当做是一个变量去解析 -->
+			<h2 v-bind:style="{fontSize:'100px'}">{{title}}</h2>
+			<!-- 可以引入变量 -->
+			<h2 v-bind:style="{fontSize:fontSize}">{{title}}</h2>
+			<h2 v-bind:style="{fontSize:`${fontSize2}px`}">{{title}}</h2>
+
+		</div>
+
+
+
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#div',
+				data: {
+					title: 'v-bind动态绑定style（对象语法）',
+					fontSize: '50px',
+					fontSize2: 100
+				}
+			})
+		</script>
+	</body>
+</html>

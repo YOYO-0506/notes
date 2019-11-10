@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>08-v-bind动态绑定class（数组语法）</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style type="text/css">
+			.colorRed {
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div">
+			<h1 class="normal" v-bind:class="{colorRed:isColorRed}">{{title}}</h1>
+			<h1 class="normal" v-bind:class="getClasses()">{{title}}</h1>
+			<button type="button" v-on:click="setColor">切换字体颜色</button>
+		</div>
+
+
+
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#div',
+				data: {
+					title: 'v-bind动态绑定class（数组语法）',
+					isColorRed: false,
+					isLine: true,
+					isActive: true
+				},
+				methods: {
+					setColor() {
+						this.isColorRed = !this.isColorRed
+					},
+					getClasses() {
+						return {
+							active: this.isActive,
+							line: this.isLine
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

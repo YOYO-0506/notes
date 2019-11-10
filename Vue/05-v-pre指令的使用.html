@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>05-v-pre指令的使用</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="div">
+			<h1>{{title}}</h1>
+			<!-- {{title}} -->
+			<h1 v-pre>{{title}}</h1>
+		</div>
+
+
+
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#div',
+				data: {
+					title: 'v-pre指令的使用',
+				}
+			})
+		</script>
+	</body>
+</html>

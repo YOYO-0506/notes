@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>07-v-bind的基本使用</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="div">
+			<h1>{{title}}</h1>
+			<img v-bind:src="imgURL">
+			<a v-bind:href="aHref">百度一下</a>
+		</div>
+
+
+
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#div',
+				data: {
+					title: 'v-bind的基本使用',
+					imgURL: 'https://cn.vuejs.org/images/logo.png',
+					aHref: 'https://www.baidu.com/'
+				}
+			})
+		</script>
+	</body>
+</html>
