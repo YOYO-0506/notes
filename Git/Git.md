@@ -95,6 +95,21 @@ git fetch origin dev:dev
 # 建议本地分支名称与远程分支名称一样
 ```
 
+## 忽略文件上传
+> 新建一个文件 .gitignore
+
+```shell
+# 忽略哪些文件不用上传
+
+# 重命名选择 如：package-lock.json   02/1.txt
+
+# 通配符选择 如: *.json    02/*.txt
+
+# 选择目录 如： node_modules/
+
+
+```
+
 ## GitLab
 
 生成SSH密钥
