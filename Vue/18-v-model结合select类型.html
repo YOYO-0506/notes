@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	</head>
+	<body>
+		<div id="div">
+			<select v-model="area">
+				<option value="南海区">南海区</option>
+				<option value="禅城区">禅城区</option>
+				<option value="三水区">三水区</option>
+				<option value="高明区">高明区</option>
+			</select>
+			<h1>当前位置：{{area}}</h1>
+			<hr>
+			<select v-model="area1" multiple>
+				<option value="南海区">南海区</option>
+				<option value="禅城区">禅城区</option>
+				<option value="三水区">三水区</option>
+				<option value="高明区">高明区</option>
+			</select>
+			<h1>当前位置：{{area1}}</h1>
+			
+			<hr>
+			
+			<select  v-model="area2">
+				<option :value ="item" v-for="item in list" v-for="area2">{{item}}</option>
+			</select>
+			<h1>area2:{{area2}}</h1>
+		</div>
+
+
+
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#div',
+				data: {
+					area: '南海区',
+					area1: [],
+					area2: '南海区',
+					list:['南海区','禅城区','三水区','高明区',]
+				},
+			})
+		</script>
+	</body>
+</html>

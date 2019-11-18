@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<title>14-v-on的基本使用</title>
+	</head>
+
+	<body>
+		<div id="div">
+			<h1>{{title}}</h1>
+			<h2>计数器：{{count}}</h2>
+			<button type="button" @click="add()" :disabled='count>110'>+</button>
+			<button type="button" @click="jian()" :disabled='count<0'>-</button>
+		</div>
+		<script>
+			const vm = new Vue({
+				el: '#div',
+				data: {
+					title: '14-v-on的基本使用',
+					count: 0
+				},
+				methods: {
+					add() {
+						return this.count++
+					},
+					jian() {
+						return this.count--
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

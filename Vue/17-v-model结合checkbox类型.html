@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	</head>
+	<body>
+		<div id="div">
+			<!-- checkbox单选框 -->
+			<label for="agree">
+				<input type="checkbox" id="agree" v-model="isAgree" />同意协议
+			</label>
+			<button :disabled="!isAgree">下一步</button>
+			<h1>状态{{isAgree}}</h1>
+
+			<hr>
+
+			<!-- checkbox多选框 -->
+			<label for="huawei">
+				<input type="checkbox" id="huawei" name="phone" v-model="phoneList" value="华为">华为
+			</label>
+			<label for="iphone">
+				<input type="checkbox" id="iphone" name="phone" v-model="phoneList" value="IPhone">IPhone
+			</label>
+			<label for="MI">
+				<input type="checkbox" id="MI" name="phone" v-model="phoneList" value="小米">小米
+			</label>
+			<label for="Vivo">
+				<input type="checkbox" id="Vivo" name="phone" v-model="phoneList" value="Vivo">Vivo
+			</label>
+			<h1>选择到的手机{{phoneList}}</h1>
+		</div>
+
+
+
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#div',
+				data: {
+					isAgree: false,
+					phoneList: ['华为']
+				},
+			})
+		</script>
+	</body>
+</html>
