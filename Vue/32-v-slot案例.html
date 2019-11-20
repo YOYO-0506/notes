@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	</head>
+	<body>
+		<div id="div">
+			<cpn>
+				<!-- 2.在template中使用 v-slot接收 -->
+				<!-- value自定义 -->
+				<template v-slot="list">
+					<span v-for="item in list">{{item.join(' - ')}}</span>
+				</template>
+			</cpn>
+			<cpn></cpn>
+		</div>
+
+
+		<template id="cpn">
+			<!-- 1.通过 v-bind传递  :key = value-->
+			<!-- key可以自定义 -->
+			<!-- value 是子组件里的参数-->
+			<slot :pLanguage="pLanguage">
+				<ul>
+					<li v-for="item in pLanguage">{{item}}</li>
+				<!-- </ul> -->
+			</slot>
+		</template>
+
+
+		<script type="text/javascript">
+			Vue.component('cpn', {
+				template: '#cpn',
+				data() {
+					return {
+						pLanguage: ['JavaScript', 'Java', 'html', 'C++', 'C', 'Python', ]
+					}
+				}
+			})
+
+
+			const vm = new Vue({
+				el: '#div',
+			})
+		</script>
+	</body>
+</html>

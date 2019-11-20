@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	</head>
+	<body>
+		<div id="div">
+			<cpn>
+				<template v-slot="cpnName">
+					{{cpnName.user.firstName}}
+					{{cpnName.user.lastName}}
+				</template>
+			</cpn>
+		</div>
+
+
+		<template id="cpn">
+			<div>
+				<h1>
+					<slot :user="user">
+						{{user.lastName}}
+					</slot>
+				</h1>
+			</div>
+		</template>
+		
+		
+		<script type="text/javascript">
+			Vue.component('cpn', {
+				template: '#cpn',
+				data() {
+					return {
+						user: {
+							lastName: 'Howard',
+							firstName: 'Dwight'
+						}
+					}
+				}
+			})
+			const vm = new Vue({
+				el: '#div',
+			})
+		</script>
+	</body>
+</html>

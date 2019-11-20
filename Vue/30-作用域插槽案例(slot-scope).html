@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	</head>
+	<body>
+		<div id="div">
+			<cpn></cpn>
+			<cpn>
+				<template slot-scope="slot">
+					<span v-for="item in slot.data">{{item}}-</span>
+				</template>
+			</cpn>
+			<cpn>
+				<template slot-scope="slot">
+				<span>{{slot.data.join(' - ')}}</span>
+				</template>
+			</cpn>
+		</div>
+
+
+		<template id="cpn">
+			<div>
+				<slot :data="pLanguage">
+					<ul>
+						<li v-for="item in pLanguage">{{item}}</li>
+					</ul>
+				</slot>
+			</div>
+		</template>
+		<script type="text/javascript">
+			Vue.component('cpn', {
+				template: '#cpn',
+				data() {
+					return {
+						pLanguage: ['JavaScript', 'Java', 'html', 'C++', 'C', 'Python', ]
+					}
+				}
+			})
+			const vm = new Vue({
+				el: '#div',
+			})
+		</script>
+	</body>
+</html>
