@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	</head>
+
+	<body>
+		<div id="div">
+			<cpn :cinfo='info' :my-child-message='message'></cpn>
+		</div>
+
+
+		<template id="cpn">
+			<div>
+				<h1>{{cinfo}}</h1>
+
+				<h1>{{myChildMessage}}</h1>
+			</div>
+		</template>
+		<script type="text/javascript">
+			Vue.component('cpn', {
+				template: '#cpn',
+				props: {
+					cinfo: {
+						type: Object,
+						default () {
+							return {}
+						}
+					},
+					myChildMessage: {
+						type: String,
+						default: '子组件'
+					}
+				}
+
+			})
+			const vm = new Vue({
+				el: '#div',
+				data: {
+					info: {
+						name: 'yao',
+						age: 22
+					},
+					message: '父组件'
+				},
+			})
+		</script>
+	</body>
+
+</html>

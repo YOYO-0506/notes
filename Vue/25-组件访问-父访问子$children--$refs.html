@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	</head>
+	<body>
+		<div id="div">
+			<cpn></cpn>
+			<cpn></cpn>
+			<cpn></cpn>
+			<cpn ref='child'></cpn>
+			<button @click="btnClick">按钮</button>
+		</div>
+
+
+		<template id="cpn">
+			<div>
+				我是子组件的内容
+			</div>
+
+		</template>
+		<script type="text/javascript">
+			Vue.component('cpn', {
+				template: '#cpn',
+				data(){
+					return{
+						name:"我是子组件的name",
+						age:'我是子组件的age'
+					}
+				},
+				methods: {
+					showMessage() {
+						console.log('showMessage');
+					}
+				}
+			})
+			const vm = new Vue({
+				el: '#div',
+				methods:{
+					btnClick(){
+						// 1. $children
+						console.log(this.$children);
+						this.$children[0].showMessage()
+						console.log(this.$children[0].name);
+						
+						// 2.$refs =>对象类型，默认是一个空对象   ref='child'
+						console.log(this.$refs.child.age);
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

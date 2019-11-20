@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	</head>
+	<body>
+		<div id="div">
+			<h1>{{hobbies}}</h1>
+			<label :for="item" v-for="item in originHobbies">
+				<input type="checkbox" name="hobbies" :id="item" :value="item" v-model="hobbies" />{{item}}
+			</label>
+
+		</div>
+
+
+
+		<script type="text/javascript">
+			const vm = new Vue({
+				el: '#div',
+				data: {
+					message: '值绑定',
+					hobbies: [],
+					originHobbies: ['篮球', '足球', '羽毛球', '乒乓球', '高尔夫球']
+				},
+			})
+		</script>
+	</body>
+</html>

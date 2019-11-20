@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	</head>
+	<body>
+		<div id="div">
+			<!-- 1.从父组件传递参数 -->
+			<my-div :cmovies='movies' :cmessage='message' :cmust="must"></my-div>
+
+			<hr>
+
+			<!-- 2.不传递参数，使用默认值 -->
+			<my-div :cmust='must' :validator='prop'></my-div>
+		</div>
+
+
+		<template id="mydiv">
+			<div>
+				<ul>
+					<li v-for="item in cmovies">{{item}}</li>
+				</ul>
+				<h1>{{cmessage}}</h1>
+				<h2>{{cmust}}</h2>
+				<h3>{{validator}}</h3>
+			</div>
+
+		</template>
+
+
+		<script type="text/javascript">
+			// 父传子：props
+			Vue.component('my-div', {
+				template: '#mydiv',
+				props: {
+					// 1.类型限制
+					cmovies: {
+						type: Array,
+						// 2.提供默认值，类型是对象或者数组时，默认值必须是一个函数
+						default () {
+							return ['默认值', '默认值', '默认值', '默认值', '默认值', ]
+						}
+
+					},
+					cmessage: {
+						type: String,
+						// 2.提供默认值
+						default: '子组件的默认值'
+					},
+					cmust: {
+						type: String,
+						// 3.设置必须传值的 required:true
+						required: true
+					},
+					// 4.设置自定义验证函数
+					validator: {
+						validator(val) {
+							return ['success', 'warning', 'danger'].indexOf(val) !== -1
+						}
+					}
+				}
+			})
+			const vm = new Vue({
+				el: '#div',
+				data: {
+					movies: ['虎牙直播', '腾讯体育', '斗鱼直播', '企鹅电竞', '抖音'],
+					message: '父组件的message',
+					must: '必须的',
+					prop: 'success'
+				}
+			})
+		</script>
+	</body>
+</html>

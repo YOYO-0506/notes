@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	</head>
+	<body>
+		<div id="div">
+			<!-- 4. 父组件接收自定义事件，处理函数为'changeTotal' -->
+			<cpn @increment='changeTotal' @decrement='changeTotal'></cpn>
+			<h1>total：{{total}}</h1>
+		</div>
+
+		<template id="cpn">
+			<div>
+				<!-- 1. button 点击触发'increment' 'decrement' 事件-->
+				<button @click="increment">+1</button>
+				<button @click="decrement">-1</button>
+			</div>
+
+		</template>
+
+
+		<script type="text/javascript">
+			Vue.component("cpn", {
+				template: '#cpn',
+				data() {
+					return {
+						counter: 0
+					}
+				},
+				methods: {
+
+					increment() {
+						this.counter++
+						// 2. 子组件里的参数counter++ 
+						// 3. 向父组件传递自定义函数'increment' 和子组件参数counter
+						this.$emit('increment', this.counter)
+					},
+					decrement() {
+						this.counter--
+						this.$emit('decrement', this.counter)
+					}
+				}
+			})
+			const vm = new Vue({
+				el: '#div',
+				data: {
+					total: 0
+				},
+				methods: {
+					// 父组件里的参数 total = 子组件传递过来的参数counter
+					changeTotal(counter) {
+						this.total = counter
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	</head>
+	<body>
+		<div id="div">
+			<cpn>
+				<span slot="top">slot="top"</span>
+				<span>替换</span>
+			</cpn>
+			<cpn>
+				<button slot="center">替换按钮</button>
+				<span>替换</span>
+				<!-- 只插入文本内容，不插入标签 -->
+				<template>123</template>
+			</cpn>
+		</div>
+
+
+		<template id="cpn">
+			<div>
+				<slot name="top">
+					<h1>上边的</h1>
+				</slot>
+				<slot name="center">
+					<h1>中间的</h1>
+				</slot>
+				<slot name="bottom">
+					<h1>下边的</h1>
+				</slot>
+				<slot><span>替换掉这个</span></slot>
+			</div>
+		</template>
+		<script type="text/javascript">
+			Vue.component('cpn', {
+				template: '#cpn'
+			})
+			const vm = new Vue({
+				el: '#div',
+			})
+		</script>
+	</body>
+</html>
