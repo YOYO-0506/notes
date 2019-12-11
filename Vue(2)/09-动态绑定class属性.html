@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+        }
+
+        .bg-black {
+            background: black;
+        }
+
+        .bg-red {
+            background: red;
+        }
+
+        .bg-blue {
+            background: blue;
+        }
+
+        .bg-green {
+            background: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{message}}</h1>
+        <div class="box" :class="{
+            'bg-blue':color==='blue',
+            'bg-red':color==='red',
+            'bg-green':color==='green',
+            'bg-black':color==='black'
+        }">
+        </div>
+        <div :class="[
+        'box',
+        {
+            'bg-blue':color==='blue',
+            'bg-red':color==='red',
+            'bg-green':color==='green', 
+            'bg-black':color==='black'
+        }
+        ]">
+        </div>
+        <input type="text" v-model="color">
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                message: "Hello Vue",
+                color: 'black',
+            }
+        })
+    </script>
+</body>
+
+</html>

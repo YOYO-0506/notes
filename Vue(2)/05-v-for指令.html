@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{message}}</h1>
+        <ul>
+            <li v-for="(user,index) in users">{{user}} index:{{index}}</li>
+        </ul>
+        <ul>
+            <li v-for="(num,index) in 5">{{num}} index:{{index}}</li>
+        </ul>
+        <ul>
+            <li v-for="(value,key) in objUser">{{value}} key:{{key}}</li>
+        </ul>
+        <ul>
+            <li v-for="(value,index) in objUsers">{{value}} index:{{index}}</li>
+        </ul>
+        <ul>
+            <li v-for="value in objUsers">
+                <h3>姓名：{{value.userName}}</h3>
+                <h3>年龄：{{value.age}}</h3>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                message: "Hello Vue",
+                users: ['张三', '小明', '老王', '李四'],
+                objUser: {
+                    userName: 'Luca Doncic',
+                    age: 20
+                },
+                objUsers: [{
+                        userName: 'Luca Doncic',
+                        age: 20
+                    },
+                    {
+                        userName: 'Brandon Ingram',
+                        age: 22
+                    }
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>

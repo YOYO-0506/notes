@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{message}}</h1>
+        <button v-on:click="clickBtn">按钮1</button>
+        <button @click="clickBtn">按钮2</button>
+        <button @click="changeBtn">change message</button>
+        <button @click="consoleBtn('Luca',$event)">按钮3</button>
+        <ul>
+            <!-- 获取原生事件event对象 -> $event -->
+            <li v-for="(item,index) in list" @click="logBtn(item,index,$event)">{{item}}</li>
+        </ul>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                message: "Hello Vue",
+                list: ['张三', '李四', '老王']
+            },
+            methods: {
+                logBtn(val, i, e) {
+                    console.log(val, i, e);
+
+                },
+                clickBtn() {
+                    alert('Hello Vue')
+                },
+                changeBtn() {
+                    this.message = 'New Hello Vue'
+                },
+                consoleBtn(name, e) {
+                    console.log(name, e);
+
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
