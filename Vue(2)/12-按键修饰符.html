@@ -14,9 +14,12 @@
         <h1>{{message}}</h1>
         <input type="text" @keydown.enter="keyDown">
         <input type="text" @keydown.13.a="keyDown">
+        <input type="text" @keydown="keyDown">
+        <input type="text" @keydown.num2="keyDown">
     </div>
 
     <script>
+        Vue.config.keyCodes.num2 = 98
         const vm = new Vue({
             el: "#root",
             data: {
