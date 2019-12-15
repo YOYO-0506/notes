@@ -11,11 +11,18 @@
 
 <body>
     <div id="root">
+
         <h1>{{message}}</h1>
         <input type="text" @keydown.enter="keyDown">
         <input type="text" @keydown.13.a="keyDown">
         <input type="text" @keydown="keyDown">
         <input type="text" @keydown.num2="keyDown">
+
+        <!-- --- -->
+        <!-- .exact  允许控制由精确的系统修饰符组合触发的事件-->
+
+        <input type="text" @click.ctrl.exact="keyDown">
+
     </div>
 
     <script>
@@ -27,7 +34,7 @@
             },
             methods: {
                 keyDown(event) {
-                    console.log(event.keyCode);
+                    console.log(event);
 
                 }
             },

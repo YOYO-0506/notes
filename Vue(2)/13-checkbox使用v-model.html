@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{message}}</h1>
+        <label for="checkbox">checkbox</label>
+        <input type="checkbox" name="checkbox" id="checkbox" v-model="test">
+        {{test}}
+        <hr>
+
+        <ul>
+            <li v-for="(item,index) in users">
+                <label :for="item.name">{{item.name}}</label>
+                <input type="checkbox" name="name" :id="item.name" v-model="item.checked">
+                <button @click="deleteUser(index)">删除</button>
+            </li>
+        </ul>
+        <h6>{{users}}</h6>
+        <button @click="deleteChecked">删除选中</button>
+        <button @click="selectALL">全部选中</button>
+        <button @click="cancelSelectAll">取消选中</button>
+
+        <hr>
+        <h3>demo</h3>
+        <div v-for="item in type">
+            <label :for="item.id">{{item.name}}</label>
+            <input type="checkbox" :id="item.id" v-model="typeArr" :value="item.name">
+        </div>
+        {{typeArr}}
+        <p>checkbox作为多选框操作的时候，v-model绑定一个数组，必须指定一个当前选项的value值</p>
+        <p>作为单个使用时，绑定布尔值</p>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                message: "Hello Vue",
+                test: true,
+                typeArr: ['第一题'],
+                type: [{
+                        id: 1,
+                        name: '第一题'
+                    },
+                    {
+                        id: 2,
+                        name: '第二题'
+                    },
+                    {
+                        id: 3,
+                        name: '第三题'
+                    },
+                    {
+                        id: 4,
+                        name: '第四题'
+                    }
+                ],
+                users: [{
+                        name: "张三",
+                        checked: true
+                    },
+                    {
+                        name: "李四",
+                        checked: true
+                    },
+                    {
+                        name: "老王",
+                        checked: false
+                    },
+                    {
+                        name: "小芳",
+                        checked: true
+                    },
+                ]
+            },
+            methods: {
+                deleteChecked() {
+                    // console.log(this.users);
+                    // 把checked为true的过滤
+                    this.users = this.users.filter((val) => {
+                        return !val.checked
+                    })
+
+                },
+                deleteUser(i) {
+                    // console.log(i);
+                    this.users.splice(i, 1)
+                },
+                selectALL() {
+                    this.users.forEach(val => {
+                        val.checked = true
+                    })
+                },
+                cancelSelectAll() {
+                    this.users.forEach(val => {
+                        val.checked = false
+                    })
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

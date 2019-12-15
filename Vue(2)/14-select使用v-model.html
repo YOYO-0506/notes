@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{message}}</h1>
+        <h2>城市列表</h2>
+        <select v-model="chooseCity">
+            <option :value="item" v-for="item in city">{{item}}</option>
+        </select>
+        <h6>{{chooseCity}}</h6>
+        <hr>
+        <h1>{{message}}</h1>
+        <h2>多选城市列表</h2>
+        <select v-model="multiple" multiple>
+            <option :value="item" v-for="item in city">{{item}}</option>
+        </select>
+        <h6>{{multiple}}</h6>
+
+
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                message: "Hello Vue",
+                city: ['北京', '佛山', '广州', '上海', ],
+                chooseCity: "北京",
+                multiple: []
+            }
+        })
+    </script>
+</body>
+
+</html>
