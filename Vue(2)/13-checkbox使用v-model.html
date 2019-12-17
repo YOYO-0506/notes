@@ -38,6 +38,12 @@
         {{typeArr}}
         <p>checkbox作为多选框操作的时候，v-model绑定一个数组，必须指定一个当前选项的value值</p>
         <p>作为单个使用时，绑定布尔值</p>
+        <hr>
+        <h3>checkbox案例</h3>
+        <p>case1为yes的时候选中，no的时候不选中</p>
+        <input type="checkbox" v-model="case1" true-value="yes" false-value="no">
+        {{case1}}
+
     </div>
 
     <script>
@@ -45,6 +51,7 @@
             el: "#root",
             data: {
                 message: "Hello Vue",
+                case1: 'no',
                 test: true,
                 typeArr: ['第一题'],
                 type: [{

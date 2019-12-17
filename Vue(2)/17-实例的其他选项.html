@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{message}}</h1>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            // 绑定元素
+            el: "#root",
+            data: {
+                message: "Hello Vue"
+            },
+            // 当你的实例选项中，如果存在template选项，会用模板里面的字符去替换绑定元素
+            // template选项存在的时候，el选项绑定的元素只是替换目标了
+            // template选项里只能有一个根元素
+            template: `
+                <div>
+                    <h1>{{message}}</h1>
+                    <input type="text" v-model="message">
+                </div>
+            `,
+            // watch 用于监听data选项里的成员什么时候发生了改变
+            // 需要监听data里的哪个成员,就在下面写成员名称的同名函数
+            watch: {
+                message(nVal, oVal) {
+                    console.log(nVal, oVal);
+
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{message}}</h1>
+        <input type="text" v-model="test">
+        <br>
+        username:<input type="text" v-model="obj.username">{{obj.username}}
+        <br>
+        password:<input type="password" v-model="obj.password">{{obj.password}}
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                message: "Hello Vue",
+                test: 'hello',
+                obj: {
+                    username: '',
+                    password: ''
+                }
+            },
+            watch: {
+                test: {
+                    handler(newVal, oldVal) {
+                        console.log(newVal, oldVal);
+
+                    }
+                },
+                obj: {
+                    handler(newVal, oldVal) {
+                        console.log('change');
+
+                    },
+                    // 递归检查
+                    // 不管是数组还是对象，如果不是整个数组或对象发生改变，只是成员发生改变，需要开始deep递归检查，才能监听到变化。
+                    deep: true
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

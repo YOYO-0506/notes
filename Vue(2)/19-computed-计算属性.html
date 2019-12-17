@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{message}}</h1>
+        <table border="1">
+            <tr>
+                <th>序号</th>
+                <th>书名</th>
+                <th>价钱</th>
+            </tr>
+            <tr v-for="(item, index) in books" :key="index">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+            </tr>
+        </table>
+        <h4>总价格：{{totalPrice}}</h4>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                message: "Hello Vue",
+                books: [{
+                        id: 1,
+                        name: 'JavaScript',
+                        price: 110
+                    },
+                    {
+                        id: 2,
+                        name: 'HTML',
+                        price: 50
+                    },
+                    {
+                        id: 3,
+                        name: 'CSS',
+                        price: 120
+                    },
+                    {
+                        id: 4,
+                        name: 'Node.js',
+                        price: 150
+                    },
+                ],
+            },
+            computed: {
+                totalPrice() {
+                    let res = 0
+                    for (let index = 0; index < this.books.length; index++) {
+                        res += this.books[index].price;
+                    }
+                    return res
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

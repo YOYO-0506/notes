@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+
+        <h1>{{message}}</h1>
+        <p>1. lazy 双向绑定延迟更新 onChange事件 </p>
+        <p>2. number 把数据格式化成number</p>
+        <p>3. trim删除首尾空白字符</p>
+
+        <div>
+            <input type="text" v-model.lazy="lazy">
+            {{lazy}}
+        </div>
+        <div>
+            <input type="text" v-model.number="number">
+            {{number}}
+            {{typeof number}}
+        </div>
+        <div>
+            <input type="text" v-model.trim="trim" @input="input">
+            {{trim}}
+        </div>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                message: "Hello Vue",
+                lazy: 'lazy',
+                number: '',
+                trim: 'trim'
+
+            },
+            methods: {
+                input() {
+                    console.log(this.trim);
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
