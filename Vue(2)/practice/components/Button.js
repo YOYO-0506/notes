@@ -4,13 +4,14 @@ const IButton = {
     // 在html使用，要用到烤串名称
     // 组件props选项里的参数使用小驼峰命名
 
-    htmlType: { //  html-type
+    htmlType: {
+      //  html-type
       type: String,
-      default: 'button',
+      default: "button"
     },
     type: {
       type: String,
-      default: 'primary'
+      default: "primary"
     },
     size: {
       type: String
@@ -20,10 +21,18 @@ const IButton = {
       // Boolean类型的参数，不传递参数默认为false 只要使用组件的时候，填上这个属性，就会为true
     }
   },
+  methods: {
+    click() {
+      // console.log("触发点击事件");
+      this.$emit("test");
+      // 触发vm实例中的自定义事件
+    }
+  },
   template: `
     <div class="my-btn">
     {{block}}
     <button 
+      @click='click'
       :type="htmlType" 
       :class="[
         'btn',{
@@ -44,12 +53,8 @@ const IButton = {
       </button>
     </div>
   `
-}
-
+};
 
 // 同时给一个组件注册两个名称，方便用于模板和html中使用
-Vue.component('IButton', IButton)
-Vue.component('Button', IButton)
-
-
-
+Vue.component("IButton", IButton);
+Vue.component("Button", IButton);
