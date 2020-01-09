@@ -60,6 +60,10 @@ const Table = {
         var notSelects = val.filter(item => !item.checked);
         // console.log(notSelects);
         this.selectAll = notSelects.length === 0;
+        this.$emit(
+          "select",
+          val.filter(item => item.checked)
+        );
       },
       deep: true
     }

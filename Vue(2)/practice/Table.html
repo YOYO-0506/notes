@@ -57,16 +57,25 @@
                     :cloums = "iCloums"
                     :datas = "iDatas"
                     striped
-                    @remove="handleRemove()"
+                    @remove="handleRemove"
+                    @select="handleSelect"
                 >
                 </Table>
               `,
         methods: {
-          handleRemove() {
-            console.log(2);
+          handleRemove(item, index) {
+            // console.log(item, index, "handle");
+            this.iDatas.splice(index, 1);
+          },
+          handleSelect(selects) {
+            console.log(selects);
           }
         }
       });
+      /* 组件内部，不能修改传递进来的props
+        否则使用组件时，不知道什么时候数据就改变了
+        修改数据的操作 都交由使用组件者自己修改 
+      */
     </script>
   </body>
 </html>

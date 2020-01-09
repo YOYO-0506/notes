@@ -22,9 +22,9 @@ const IButton = {
     }
   },
   methods: {
-    click(event) {
+    click() {
       // console.log("触发点击事件");
-      this.$emit("click", event);
+      this.$emit("click");
       // 触发vm实例中的自定义事件
     }
   },
