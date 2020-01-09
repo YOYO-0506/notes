@@ -22,15 +22,14 @@ const IButton = {
     }
   },
   methods: {
-    click() {
+    click(event) {
       // console.log("触发点击事件");
-      this.$emit("test");
+      this.$emit("click", event);
       // 触发vm实例中的自定义事件
     }
   },
   template: `
     <div class="my-btn">
-    {{block}}
     <button 
       @click='click'
       :type="htmlType" 
@@ -39,6 +38,7 @@ const IButton = {
         'btn-default' : type === 'default',
         'btn-primary' : type === 'primary',
         'btn-success' : type === 'success',
+        'btn-danger' : type === 'danger',
         'btn-info' : type === 'info',
         'btn-warning' : type === 'warning',
         'btn-link' : type === 'link',
