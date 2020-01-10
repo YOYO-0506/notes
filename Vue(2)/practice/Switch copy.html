@@ -12,7 +12,7 @@
       crossorigin="anonymous"
     />
     <script src="./js/vue.js"></script>
-    <script src="./components/Switch.js"></script>
+    <script src="./components/Switch copy.js"></script>
     <style>
       .switch {
         width: 100px;
@@ -35,28 +35,35 @@
     <div id="root"></div>
 
     <script>
-      new Vue({
+      const vm = new Vue({
         el: "#root",
         data() {
           return {
-            open: false
+            open: true
           };
         },
-        methods: {
-          handlerChange() {
-            this.open = !this.open;
-          }
-        },
         template: `
-            <div>
-              <ISwitch 
-            @change="handlerChange"
-            :data="open"
-            ></ISwitch>
-            {{open?'开':'关'}}
+            <div class="app">
+              <input type="checkbox" v-model="open">
+              {{open?'开':'关'}}
+              <ISwitch
+              v-model="open"
+              ></ISwitch>
+              {{open}}
             </div>
         `
+        /**等同于
+         *        :value='open'
+         *       @input ='value =>open=!value'
+         */
       });
+      /**
+       * 当给一个组件使用v-model时，
+       * v-model会做两件事
+       * 1. 给组件内部传递一个value的props 隐世方式传递
+       * 2. 给v-model里绑定的变量绑定一个input事件
+       * input事件会根据传递进去的新值 修改绑定的变量
+       */
     </script>
   </body>
 </html>

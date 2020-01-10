@@ -1,18 +1,21 @@
 Vue.component("ISwitch", {
   props: {
-    data: Boolean
+    data: Boolean,
+    value: Boolean
   },
   methods: {
     change() {
-      this.$emit("change", this.on);
-      this.on = !this.on;
+      // this.$emit("change", this.data);
+      this.$emit("input", !this.value);
+      // this.$emit("input", this.value);
+      console.log(this);
     }
   },
   template: `
         <div :class="[
           'switch',
           {
-            'switch-on' : data
+            'switch-on' : value
           }
         ]"  @click="change">
           <div class="switch-btn"></div>
