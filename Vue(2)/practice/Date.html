@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <script src="./js/vue.js"></script>
+    <script src="./components/Date.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script>
+      const vm = new Vue({
+        el: "#root",
+        data() {
+          return {
+            start: "2020-01-01",
+            end: "2020-02-01"
+          };
+        },
+        template: `
+          <div class="app">
+            <div style="border:1px solid red">
+              <input type="date" v-model="start"> 
+              <input type="date" v-model="end"> 
+              父组件的input
+            </div>
+           <!-- <InputGroup 
+            :startDate="start"
+            :endDate="end"
+            @startChange="val => start=val"
+            @endChange="val => end=val"
+          />-->  
+
+          <InputGroup 
+            :startDate.sync="start"
+            :endDate.sync="end"  
+          />
+          </div>
+        `
+      });
+    </script>
+  </body>
+</html>
