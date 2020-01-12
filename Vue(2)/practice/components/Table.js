@@ -101,7 +101,10 @@ const Table = {
       <tr v-for="(item,index) in iDatas">
         <td><input type="checkbox" v-model="item.checked"/></td>
         <td v-for="col in cloums">{{item[col['key']]}}</td>
-        <td><Button type="danger" @click="remove(item,index)">删除</Button></td>
+        <td>
+          <slot name="btn" :item="item" :index="index" :datas="datas"/>
+          <!--<Button type="danger" @click="remove(item,index)">删除</Button>-->
+        </td>
       </tr>
     </tbody>
   </table>
@@ -109,3 +112,4 @@ const Table = {
   `
 };
 Vue.component("Table", Table);
+Vue.component("MyTable", Table);

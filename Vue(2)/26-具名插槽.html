@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./js/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <cpn1>
+        <template #header>
+          <h1>
+            cpn1-header
+          </h1>
+        </template>
+        <template>
+          <h2>
+            cpn1-main-default
+          </h2>
+        </template>
+        <template v-slot:footer>
+          <h3>
+            cpn1-footer
+          </h3>
+        </template>
+      </cpn1>
+    </div>
+
+    <script>
+      const cpn1 = {
+        template: `
+        <div class="container">
+          <header>
+            <slot name="header"></slot>
+          </header>
+          <main>
+            <slot></slot>
+          </main>
+          <footer>
+            <slot name="footer"></slot>
+          </footer>
+        </div>
+        `
+      };
+
+      new Vue({
+        el: "#root",
+        components: {
+          cpn1
+        }
+      });
+    </script>
+  </body>
+</html>

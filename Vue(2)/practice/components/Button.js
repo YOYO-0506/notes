@@ -29,7 +29,7 @@ const IButton = {
     }
   },
   template: `
-    <div class="my-btn">
+   
     <button 
       @click='click'
       :type="htmlType" 
@@ -51,7 +51,7 @@ const IButton = {
       >
       <slot>插槽</slot>
       </button>
-    </div>
+    
   `
 };
 

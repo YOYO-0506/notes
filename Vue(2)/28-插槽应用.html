@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./js/vue.js"></script>
+    <script src="./practice/components/Table.js"></script>
+    <script src="./practice/components/Button.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <my-table :cloums="iCloums" :datas="iDatas" striped>
+        <template #btn="{item,index,datas}">
+          <i-button type="success" @click="run(item,index,datas)"
+            >删除</i-button
+          >
+          <i-button>添加</i-button>
+        </template>
+      </my-table>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#root",
+        methods: {
+          run(item, index, datas) {
+            console.log(datas, item, index);
+          }
+        },
+        data() {
+          return {
+            iDatas: [
+              {
+                username: "张三",
+                email: "1@qq.com",
+                phone: "15011620082",
+                address: "佛山市"
+              },
+              {
+                username: "李四",
+                email: "2@qq.com",
+                phone: "15011620083",
+                address: "佛山市"
+              },
+              {
+                username: "老王",
+                email: "3@qq.com",
+                phone: "15011620084",
+                address: "佛山市"
+              }
+            ],
+            iCloums: [
+              { title: "账号", key: "username" },
+              { title: "邮箱", key: "email" },
+              { title: "手机", key: "phone" },
+              { title: "地址", key: "address" }
+            ]
+          };
+        }
+      });
+
+      const obj = {
+        name: "yao",
+        age: 12
+      };
+      const { name, age } = obj;
+      console.log(name, age);
+    </script>
+  </body>
+</html>
