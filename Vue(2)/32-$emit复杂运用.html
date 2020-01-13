@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./js/vue.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script>
+      const Home = {
+        template: `
+          <h1>Home</h1>
+        `,
+        mounted() {
+          this.$parent.$on("homeGet", () => {
+            // 3. Home组件 给父组件监听事件，表示已经收到About已经挂载完毕信息（只有Home组件才监听这个事件）
+            console.log("Home组件已经收到About组件挂载完毕的信息");
+          });
+        }
+      };
+      const About = {
+        mounted() {
+          console.log("About组件挂载完毕，触发自定义事件aboutMounted");
+
+          this.$emit("aboutMounted");
+          // 1. About组件挂载完毕时，触发  aboutMounted
+        },
+        template: `
+          <h1>About</h1>
+        `
+      };
+      const News = {
+        template: `
+          <h1>News</h1>
+        `
+      };
+
+      new Vue({
+        el: "#root",
+        components: {
+          Home,
+          News,
+          About
+        },
+        methods: {
+          sendMsc() {
+            console.log(
+              "父组件已经接受到About组件挂载完毕信息，触发自定义事件homeGet"
+            );
+            this.$emit("homeGet");
+          }
+          // 2. 父组件触发函数sendMsc时候，再触发 homeGet
+        },
+        template: `
+          <div class="cpn">
+            <Home />
+            <About @aboutMounted="sendMsc"/>
+          </div>
+        `
+      });
+
+      // <component :is=checked /> 使用is属性绑定想要显示的组件名称
+      // 动态组件切换后，会销毁该组件
+      // <keep-alive></keep-alive>用于缓存动态组件和 v-if 条件控制的组件，不让组件被销毁，暂时保存
+    </script>
+  </body>
+</html>
