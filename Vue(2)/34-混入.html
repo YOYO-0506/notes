@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./js/vue.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script>
+      // 局部混入
+      const myMixin = {
+        methods: {
+          getElement() {
+            console.log("getElement");
+            return this.$el;
+          }
+        },
+        created() {
+          console.log("mixinCreated");
+        }
+      };
+      // 混入主要是用来提高可维护性的
+      const Home = {
+        template: `
+        <div :class="name +'home'" @click="getElement" @click.right="run">
+          <h1>Home</h1>
+        </div>
+       `,
+
+        created() {
+          console.log("homeCreated");
+        },
+        mixins: [myMixin]
+        // 局部混入是一个数组
+      };
+      const News = {
+        template: `
+        <div class="news" @click="run">
+          <h1>News</h1>  
+        </div>
+       `
+      };
+      // 全局混入，可以混入变量、方法、计算属性
+      // 如果全局混入的数据与组件本身的数据相同，那就使用组件本身的数据(生命周期钩子函数除外，都会执行一遍)。先执行混入的钩子函数，再执行 组件里的钩子函数
+      Vue.mixin({
+        data() {
+          return {
+            name: "my-"
+          };
+        },
+        methods: {
+          run() {
+            console.log("run");
+          }
+        }
+      });
+
+      new Vue({
+        el: "#root",
+        components: {
+          Home,
+          News
+        },
+        template: `
+          <div>
+            <Home/>
+            <News/>  
+          </div>
+        `
+      });
+    </script>
+  </body>
+</html>

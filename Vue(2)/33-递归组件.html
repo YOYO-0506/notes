@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./js/vue.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script>
+      Vue.component("cpn", {
+        props: {
+          data: Array
+        },
+        name: "cpn",
+        template: `
+          <div class="tree">
+            <ul>
+              <li v-for="item in data">
+                <h1>{{item.title}}</h1>
+                <cpn :data="item.children"/>
+              </li>
+            </ul>
+          </div>
+        `
+      });
+      new Vue({
+        el: "#root",
+        data() {
+          return {
+            list: [
+              {
+                title: "菜单1",
+                children: [
+                  {
+                    title: "菜单1-1"
+                  },
+                  {
+                    title: "菜单1-2"
+                  },
+                  {
+                    title: "菜单1-3"
+                  }
+                ]
+              },
+              {
+                title: "菜单2"
+              },
+              {
+                title: "菜单3"
+              }
+            ]
+          };
+        },
+        template: `
+          <cpn :data=list />
+        `
+      });
+    </script>
+  </body>
+</html>
