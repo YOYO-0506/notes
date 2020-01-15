@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./js/vue.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <input type="text" v-model="text" />
+      <input type="text" v-listener:click.go="run" v-model="input" />
+      <input type="text" v-sync="text" />{{text}}
+    </div>
+
+    <script>
+      // 全局指令
+      // Vue.directive(id, [definition])
+      // 在模板中，使用指令时，使用v-listener
+      // 指令的选项中可以添加不同时期的回调函数，每一个回调函数都可以接收4个参数el, binding, vnode, oldvnode
+      Vue.directive("listener", {
+        // 在指令和元素绑定时触发
+        bind(el, binding, vnode, oldvnode) {
+          el.style.background = "red";
+          console.log(binding);
+          const { value } = binding;
+          value();
+          console.log(binding.expression);
+          console.log(binding.arg);
+          console.log(binding.modifiers);
+
+          // console.log(el);
+        },
+        // 在指令所绑定的元素，被插入DOM时触发
+        inserted(el) {
+          el.focus();
+          console.log(el);
+        },
+        // 在指令所绑定的上下文中，更新时触发
+        update() {
+          // console.log("update");
+        }
+      });
+
+      Vue.directive("sync", {
+        bind(el, binding, vnode) {
+          el.value = binding.value;
+          el.addEventListener("input", () => {
+            console.log(binding.expression);
+
+            console.log(vnode);
+
+            vnode.context[binding.expression] = el.value;
+          });
+        },
+        update(el, binding, vnode) {
+          el.value = binding.value;
+        }
+      });
+      const vm = new Vue({
+        el: "#root",
+        data() {
+          return {
+            input: "aabb",
+            text: "111"
+          };
+        },
+        methods: {
+          run() {
+            alert("1");
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
