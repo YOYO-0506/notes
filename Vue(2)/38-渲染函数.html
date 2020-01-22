@@ -32,38 +32,65 @@
           </div>
         `
       });
+      Vue.component("cpn2", {
+        props: {
+          title: {
+            type: String,
+            default: "title"
+          }
+        },
+        render(h) {
+          return h(
+            "div",
+            {
+              class: {
+                test: true
+              }
+            },
+            [this.$slots.header, this.$slots.default]
+          );
+        }
+      });
       const vm = new Vue({
         el: "#root",
-        render(h) {
-          // return h("div", "content"); // 创建一个div标签，嵌套的内容是"content"
-          // return h("div", [h("h1", "title"), h("h6", "content")]); //创建div标签，嵌套内容是h1,h6标签
-          // return h("cpn", "isCpn"); //创建组件
-          // return h(
-          //   "div",
-          //   {
-          //     style: {
-          //       color: "red",
-          //       background: "blue"
-          //     },
-          //     class: "aa bb",
-          //     on: {
-          //       click() {
-          //         alert("1");
-          //       }
-          //     }
-          //   },
-          //   "style"
-          // ); // 添加样式
-          // return h(
-          //   "cpn",
-          //   {
-          //     props: {
-          //       title: "isTitle"
-          //     }
-          //   },
-          //   "isCpn"
-          // ); // 渲染组件并传递props
-        }
+        template: `<cpn2>
+          <template #header>
+            <h1>isHeader</h1>
+          </template>
+          <template>
+            <h1>isDefault</h1>
+          </template>
+        </cpn2>`
+        // render(h) {
+        // return h("div", "content"); // 创建一个div标签，嵌套的内容是"content"
+        // return h("div", [h("h1", "title"), h("h6", "content")]); //创建div标签，嵌套内容是h1,h6标签
+        // return h("cpn", "isCpn"); //创建组件
+        // return h(
+        //   "div",
+        //   {
+        //     style: {
+        //       color: "red",
+        //       background: "blue"
+        //     },
+        //     class: "aa bb",
+        //     on: {
+        //       click() {
+        //         alert("1");
+        //       }
+        //     }
+        //   },
+        //   "style"
+        // ); // 添加样式
+        // return h(
+        //   "cpn",
+        //   {
+        //     props: {
+        //       title: "isTitle"
+        //     }
+        //   },
+        //   "isCpn"
+        // ); // 渲染组件并传递props
+        // }
       });
     </script>
   </body>
